@@ -52,8 +52,9 @@ function App() {
             onMouseEnter={() => showTrashIcon(index)}
             onMouseLeave={hideTrashIcon}
           >
-            {content}
-            <i className={hovered === index ? 'fa-solid fa-trash-can' : 'not-hovered'}></i>
+            <i className={done ? "fa-regular fa-circle-check" : "fa-regular fa-circle"}></i>
+            <span>{content}</span>
+            <i className={hovered === index ? 'fa-solid fa-trash-can' : 'no-display'}></i>
           </div>
         ))}
       </div>
