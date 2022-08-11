@@ -13,7 +13,7 @@ body {
 }
 
 .App-header {
-
+  /* ruleset for the Todo List title */
 }
 
 .todo-input {
@@ -40,7 +40,6 @@ body {
   text-align: left;
   cursor: pointer;
   font-size: 1.25rem;
-  justify-content: space-between;
 }
 
 .todo-done {
@@ -54,14 +53,32 @@ body {
   text-align: left;
   cursor: pointer;
   font-size: 1.25rem;
-  justify-content: space-between;
+  background-color: lightgreen;
+}
+
+.todo-done span {
   text-decoration: line-through;
 }
 
-/* fa-trash-can {
+.todo:hover {
+  background-color: lightblue;
+}
 
-} */
+.todo-done:hover {
+  background-color: lightgreen;
+}
 
-.not-hovered {
+.fa-circle,
+.fa-circle-check {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+.fa-trash-can {
+  margin-left: auto;
+  cursor: default;
+}
+
+.no-display {
   display: none;
 }
