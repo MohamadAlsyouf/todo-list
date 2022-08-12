@@ -1,2 +1,2 @@
 # todo-list
-A frontend React todo list application
+A frontend todo list application developed using React, JavaScript, HTML, and CSS
