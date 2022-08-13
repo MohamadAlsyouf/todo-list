@@ -7,7 +7,6 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [hovered, setHovered] = useState(-1);
 
-  // these two useEffect hooks persist the application state via localStorage
   useEffect(() => {
     const data = localStorage.getItem('todo-list');
     if (data) setTodos(JSON.parse(data));
@@ -28,6 +27,12 @@ function App() {
     ))
   }
 
+  const deleteTodo = id => {
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    console.log('newTodos: ', newTodos);
+    setTodos(newTodos);
+  }
+
   const showTrashIcon = (index) => {
     setHovered(index)
   }
@@ -35,25 +40,6 @@ function App() {
   const hideTrashIcon = () => {
     setHovered(-1)
   }
-
-  // DEBUG DELETE FUNCTIONALITY tomorrow!!!
-  // --------------------------------------
-  // new Array is filtering deleted item as intended,
-  //  but... state array is not being updated
-
-  // const handleDelete = ({ id }) => {
-  //   const newTodos = todos.filter((todo) => todo.id !== id);
-  //   console.log(newTodos);
-  //   setTodos(newTodos);
-  // }
-
-  // const removeItem = id => {
-  //   console.log('todos: ', todos);
-  //   const newTodos = todos.filter((todo) => todo.id !== id);
-  //   console.log('newTodos: ', newTodos);
-  //   setTodos(newTodos);
-    // console.log(todos)
-  // }
 
   return (
     <div className="App">
@@ -71,17 +57,19 @@ function App() {
           <div
             className={todo.done ? "todo-done" : "todo"}
             key={todo.id}
-            onClick={() => toggleDone(index)}
             onMouseEnter={() => showTrashIcon(index)}
             onMouseLeave={hideTrashIcon}
           >
-            <i className={todo.done ? "fa-regular fa-circle-check" : "fa-regular fa-circle"}></i>
+            <i
+              className={todo.done ? "fa-regular fa-circle-check" : "fa-regular fa-circle"}
+              onClick={() => toggleDone(index)}
+            >
+            </i>
             <span>{todo.content}</span>
             <i
               id={todo.id}
               className={hovered === index ? 'fa-solid fa-trash-can' : 'no-display'}
-              // TRY using other arguments for function call*****
-              // onClick={() => removeItem(todo.id)}
+              onClick={() => deleteTodo(todo.id)}
             >
             </i>
           </div>
