@@ -104,13 +104,23 @@ body {
 }
 
 .all-button {
-  /* border-right: none; */
+  cursor: pointer;
 }
 
 .active-button {
-  /* border-right: none; */
+  cursor: pointer;
 }
 
 .complete-button {
-  /* border-left: none; */
+  cursor: pointer;
+}
+
+.all-button:hover,
+.active-button:hover,
+.complete-button:hover {
+  background-color: darkgray;
+}
+
+.clear-completed {
+  cursor: pointer;
 }
