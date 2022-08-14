@@ -103,21 +103,11 @@ body {
   border: solid 1px black;
 }
 
-.all-button {
+.filter-button {
   cursor: pointer;
 }
 
-.active-button {
-  cursor: pointer;
-}
-
-.complete-button {
-  cursor: pointer;
-}
-
-.all-button:hover,
-.active-button:hover,
-.complete-button:hover {
+.filter-button:hover {
   background-color: darkgray;
 }
 
