@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [todos, setTodos] = useState([]);
   const [hovered, setHovered] = useState(-1);
+  const [todoCount, setTodoCount] = useState(0);
 
   useEffect(() => {
     const data = localStorage.getItem('todo-list');
@@ -14,6 +15,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem('todo-list', JSON.stringify(todos))
+    setTodoCount(todos.length);
   }, [todos]);
 
   const toggleDone = index => {
@@ -25,12 +27,21 @@ function App() {
           }
         : todo
     ))
+    // not working
+    setTodoCount(todoCount - 1)
+    console.log(todoCount)
   }
 
   const deleteTodo = id => {
     const newTodos = todos.filter((todo) => todo.id !== id);
     console.log('newTodos: ', newTodos);
     setTodos(newTodos);
+  }
+
+  const clearCompleted = done => {
+    const completedTodos = todos.filter((todo) => todo.done !== true)
+    console.log("Completed todos: ", completedTodos)
+    setTodos(completedTodos)
   }
 
   const showTrashIcon = (index) => {
@@ -65,7 +76,11 @@ function App() {
               onClick={() => toggleDone(index)}
             >
             </i>
-            <span>{todo.content}</span>
+            <span
+              onClick={() => toggleDone(index)}
+            >
+              {todo.content}
+            </span>
             <i
               id={todo.id}
               className={hovered === index ? 'fa-solid fa-trash-can' : 'no-display'}
@@ -78,13 +93,13 @@ function App() {
 
       <div className='footer-wrapper'>
         <div className='footer'>
-          <span>?.. Tasks left</span>
+          <span>{todoCount} tasks left</span>
           <div>
-            <button className='all-button'>All</button>
-            <button className='active-button'>Active</button>
-            <button className='complete-button'>Complete</button>
+            <button className='all-button'>all</button>
+            <button className='active-button'>active</button>
+            <button className='complete-button'>complete</button>
           </div>
-          <span>Clear Completed</span>
+          <span className='clear-completed' onClick={() => clearCompleted()}>clear completed</span>
         </div>
       </div>
 
