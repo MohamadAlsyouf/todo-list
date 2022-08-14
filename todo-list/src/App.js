@@ -1,12 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import TodoForm from './todo';
+import TodoForm from './form';
+import FilterButton from './filterButton';
+import Todo from './todo';
 import { v4 as uuidv4 } from 'uuid';
 
-function App() {
+const filterMap = {
+    all: () => true,
+    active: (todo) => !todo.done,
+    completed: (todo) => todo.done
+  }
+
+const filterNames = Object.keys(filterMap);
+
+export default function App() {
   const [todos, setTodos] = useState([]);
-  const [hovered, setHovered] = useState(-1);
   const [todoCount, setTodoCount] = useState(0);
+  const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     const data = localStorage.getItem('todo-list');
@@ -18,39 +28,48 @@ function App() {
     setTodoCount(todos.length);
   }, [todos]);
 
-  const toggleDone = index => {
-    setTodos(todos.map((todo, currentIndex) =>
-      currentIndex === index
+  const toggleDone = id => {
+    setTodos(todos.map((todo) =>
+      id === todo.id
         ? {
           ...todo,
           done: !todo.done
           }
         : todo
     ))
-    // not working
-    setTodoCount(todoCount - 1)
-    console.log(todoCount)
   }
 
   const deleteTodo = id => {
     const newTodos = todos.filter((todo) => todo.id !== id);
-    console.log('newTodos: ', newTodos);
     setTodos(newTodos);
   }
 
   const clearCompleted = done => {
-    const completedTodos = todos.filter((todo) => todo.done !== true)
-    console.log("Completed todos: ", completedTodos)
-    setTodos(completedTodos)
+    const activeTodos = todos.filter((todo) => todo.done !== true)
+    setTodos(activeTodos)
   }
 
-  const showTrashIcon = (index) => {
-    setHovered(index)
-  }
+  const todoList = todos
+  .filter(filterMap[filter])
+  .map(todo => (
+    <Todo
+      id={todo.id}
+      content={todo.content}
+      done={todo.done}
+      key={todo.id}
+      toggleDone={toggleDone}
+      deleteTodo={deleteTodo}
+    />
+  ))
 
-  const hideTrashIcon = () => {
-    setHovered(-1)
-  }
+  const filterList = filterNames.map((name) => (
+    <FilterButton
+      key={name}
+      name={name}
+      isPressed={name === filter}
+      setFilter={setFilter}
+    />
+  ))
 
   return (
     <div className="App">
@@ -64,47 +83,17 @@ function App() {
         }}
       />
       <div className='todo-wrapper'>
-        {todos.map((todo, index, id) => (
-          <div
-            className={todo.done ? "todo-done" : "todo"}
-            key={todo.id}
-            onMouseEnter={() => showTrashIcon(index)}
-            onMouseLeave={hideTrashIcon}
-          >
-            <i
-              className={todo.done ? "fa-regular fa-circle-check" : "fa-regular fa-circle"}
-              onClick={() => toggleDone(index)}
-            >
-            </i>
-            <span
-              onClick={() => toggleDone(index)}
-            >
-              {todo.content}
-            </span>
-            <i
-              id={todo.id}
-              className={hovered === index ? 'fa-solid fa-trash-can' : 'no-display'}
-              onClick={() => deleteTodo(todo.id)}
-            >
-            </i>
-          </div>
-        ))}
+        {todoList}
       </div>
-
       <div className='footer-wrapper'>
         <div className='footer'>
           <span>{todoCount} tasks left</span>
           <div>
-            <button className='all-button'>all</button>
-            <button className='active-button'>active</button>
-            <button className='complete-button'>complete</button>
+            {filterList}
           </div>
           <span className='clear-completed' onClick={() => clearCompleted()}>clear completed</span>
         </div>
       </div>
-
     </div>
   );
 }
-
-export default App;

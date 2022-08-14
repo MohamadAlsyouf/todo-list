@@ -1,27 +1,39 @@
 import React, { useState } from 'react';
 
-const useInputValue = initialValue => {
-  const [value, setValue] = useState("");
+export default function Todo(props) {
+  const [hovered, setHovered] = useState(-1);
 
-  return {
-    value,
-    onChange: event => setValue(event.target.value),
-    resetValue: () => setValue("")
+  const showTrashIcon = (id) => {
+    setHovered(id)
   }
-}
 
-export default function TodoForm ({onSubmit}) {
-  const { resetValue, ...todoText } = useInputValue("");
+  const hideTrashIcon = () => {
+    setHovered(-1)
+  }
 
   return (
-    <form
-      onSubmit={event => {
-        event.preventDefault();
-        onSubmit(todoText.value);
-        resetValue();
-      }}
+    <div
+      className={props.done ? "todo-done" : "todo"}
+      key={props.id}
+      onMouseEnter={() => showTrashIcon(props.id)}
+      onMouseLeave={hideTrashIcon}
     >
-      <input className='todo-input' {...todoText} />
-    </form>
+      <i
+        className={props.done ? "fa-regular fa-circle-check" : "fa-regular fa-circle"}
+        onClick={() => props.toggleDone(props.id)}
+      >
+      </i>
+      <span
+        onClick={() => props.toggleDone(props.id)}
+      >
+        {props.content}
+      </span>
+      <i
+        id={props.id}
+        className={hovered === props.id ? 'fa-solid fa-trash-can' : 'no-display'}
+        onClick={() => props.deleteTodo(props.id)}
+      >
+      </i>
+    </div>
   )
 }
