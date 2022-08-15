@@ -12,6 +12,6 @@ A frontend todo list application developed using React, JavaScript, HTML, and CS
 
 ### Features left to implement
 - [ ] Users can filter tasks based on current input value
-- [ ] Users can press enter key to add new task to list
+- [x] Users can press enter key to add new task to list
 - [ ] Users can press up/down arrows to reorder tasks
 - [ ] Users can mark a task done/undone using keyboard
