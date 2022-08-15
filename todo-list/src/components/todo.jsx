@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { TodoItem } from '../styles/styling';
+// import { Draggable } from 'react-beautiful-dnd';
 
 export default function Todo(props) {
   const [hovered, setHovered] = useState(-1);
@@ -12,8 +14,8 @@ export default function Todo(props) {
   }
 
   return (
-    <div
-      className={props.done ? "todo-done" : "todo"}
+    <TodoItem
+      Done={props.done}
       key={props.id}
       onMouseEnter={() => showTrashIcon(props.id)}
       onMouseLeave={hideTrashIcon}
@@ -34,6 +36,6 @@ export default function Todo(props) {
         onClick={() => props.deleteTodo(props.id)}
       >
       </i>
-    </div>
+    </TodoItem>
   )
 }

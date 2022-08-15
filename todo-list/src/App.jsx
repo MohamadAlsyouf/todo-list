@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import TodoForm from './form';
-import FilterButton from './filterButton';
-import Todo from './todo';
+import TodoForm from './components/form';
+import FilterButton from './components/filterButton';
+import Todo from './components/todo';
 import { v4 as uuidv4 } from 'uuid';
+import './styles/App.css';
+import * as $ from './styles/styling';
 
 const filterMap = {
-    all: () => true,
-    active: (todo) => !todo.done,
-    completed: (todo) => todo.done
-  }
+  all: () => true,
+  active: (todo) => !todo.done,
+  completed: (todo) => todo.done
+}
 
 const filterNames = Object.keys(filterMap);
 
@@ -72,28 +73,28 @@ export default function App() {
   ))
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <$.AppWrapper>
+      <$.AppHeader>
         <h1>Todo List</h1>
-      </header>
+      </$.AppHeader>
       <TodoForm
         onSubmit=
         {todoText => {
           setTodos([{ id: uuidv4(), content: todoText, done: false }, ...todos])
         }}
       />
-      <div className='todo-wrapper'>
+      <$.TodoWrapper>
         {todoList}
-      </div>
-      <div className='footer-wrapper'>
-        <div className='footer'>
+      </$.TodoWrapper>
+      <$.FooterWrapper>
+        <$.Footer>
           <span>{todoCount} tasks left</span>
           <div>
             {filterList}
           </div>
           <span className='clear-completed' onClick={() => clearCompleted()}>clear completed</span>
-        </div>
-      </div>
-    </div>
+        </$.Footer>
+      </$.FooterWrapper>
+    </$.AppWrapper>
   );
 }

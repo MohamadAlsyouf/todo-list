@@ -22,7 +22,7 @@ export default function TodoForm ({onSubmit}) {
       }}
     >
       <input className='todo-input' {...todoText} />
-      <button type="submit">Add</button>
+      <button className='add-button' type="submit">Add</button>
     </form>
   )
 }
