@@ -14,6 +14,7 @@ A frontend todo list application developed using React, JavaScript, HTML, and CS
   - Users tasks are saved (Persist the application state)
   - Users can remove all completed tasks at once
   - Users can drag and drop to reorder tasks
+  - Users can navigate tasks via keyboard for improved accessibility
 
 - Features left to implement
-  - keyboard functionality to improve accessibility
+  - Make it pretty!!!
