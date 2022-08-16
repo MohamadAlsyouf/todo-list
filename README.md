@@ -1,5 +1,14 @@
 # todo-list
-A frontend todo list application developed using React, JavaScript, HTML, and CSS
+A frontend todo list application developed using React
+
+## Technologies Used 🛠️
+
+- React
+- JavaScript
+- Html
+- CSS
+- [Styled Components](https://styled-components.com/)
+- [react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd#readme)
 
 ## Current Features
 - Main features
