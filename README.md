@@ -11,7 +11,7 @@ A frontend todo list application developed using React, JavaScript, HTML, and CS
   - Users can filter tasks by status
     
 - Optional features
-  - Users tasks are saved (Persist the application state)
+  - Users tasks are saved (application state persisted)
   - Users can remove all completed tasks at once
   - Users can drag and drop to reorder tasks
   - Users can navigate tasks via keyboard for improved accessibility
