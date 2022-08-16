@@ -17,4 +17,4 @@ A frontend todo list application developed using React, JavaScript, HTML, and CS
   - Users can navigate tasks via keyboard for improved accessibility
 
 - Features left to implement
-  - Make it pretty!!!
+  - [x] Make it pretty!!!
