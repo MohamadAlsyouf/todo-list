@@ -42,18 +42,22 @@ export const TodoItem = styled.div`
   border: 2px solid black;
   padding: 1rem;
   text-align: left;
-  cursor: pointer;
+  cursor: default;
   font-size: 1.25rem;
+  > span {
+    cursor: default;
+  };
   &:hover {
     Background: lightblue;
   };
-  ${({ Done }) => Done && `
-    Background: lightgreen;
+  ${({ done }) => done && `
+    background: lightgreen;
     > span {
+    cursor: default;
     text-decoration: line-through;
     };
     &:hover {
-      Background: #88dc88;
+      background: #88dc88;
     };
   `};
 `;
