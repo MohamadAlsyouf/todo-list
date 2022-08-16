@@ -9,9 +9,7 @@ A frontend todo list application developed using React, JavaScript, HTML, and CS
 - Users can remove a task
 - Users can filter tasks by status
 - Users can remove all completed tasks at once
+- Users can drag and drop to reorder tasks
 
 ### Features left to implement
-- [ ] Users can filter tasks based on current input value
-- [x] Users can press enter key to add new task to list
-- [ ] Users can press up/down arrows to reorder tasks
-- [ ] Users can mark a task done/undone using keyboard
+- [ ] keyboard functionality to improve accessibility
