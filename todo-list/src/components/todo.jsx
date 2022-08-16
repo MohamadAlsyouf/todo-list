@@ -1,41 +1,47 @@
-import React, { useState } from 'react';
-import { TodoItem } from '../styles/styling';
-// import { Draggable } from 'react-beautiful-dnd';
+import React, { useState } from "react";
+import * as $ from "../styles/styling";
 
-export default function Todo(props) {
+export default function Todo({
+  todo,
+  provided,
+  snapshot,
+  toggleDone,
+  deleteTodo,
+}) {
   const [hovered, setHovered] = useState(-1);
 
   const showTrashIcon = (id) => {
-    setHovered(id)
-  }
+    setHovered(id);
+  };
 
   const hideTrashIcon = () => {
-    setHovered(-1)
-  }
+    setHovered(-1);
+  };
 
   return (
-    <TodoItem
-      Done={props.done}
-      key={props.id}
-      onMouseEnter={() => showTrashIcon(props.id)}
+    <$.TodoItem
+      ref={provided.innerRef}
+      snapshot={snapshot}
+      {...provided.draggableProps}
+      {...provided.dragHandleProps}
+      done={todo.done}
+      key={todo.id}
+      tabIndex={todo.tabIndex}
+      onMouseEnter={() => showTrashIcon(todo.id)}
       onMouseLeave={hideTrashIcon}
     >
       <i
-        className={props.done ? "fa-regular fa-circle-check" : "fa-regular fa-circle"}
-        onClick={() => props.toggleDone(props.id)}
-      >
-      </i>
-      <span
-        onClick={() => props.toggleDone(props.id)}
-      >
-        {props.content}
-      </span>
+        className={
+          todo.done ? "fa-regular fa-circle-check" : "fa-regular fa-circle"
+        }
+        onClick={() => toggleDone(todo.id)}
+      ></i>
+      <span onClick={() => toggleDone(todo.id)}>{todo.content}</span>
       <i
-        id={props.id}
-        className={hovered === props.id ? 'fa-solid fa-trash-can' : 'no-display'}
-        onClick={() => props.deleteTodo(props.id)}
-      >
-      </i>
-    </TodoItem>
-  )
+        id={todo.id}
+        className={hovered === todo.id ? "fa-solid fa-trash-can" : "no-display"}
+        onClick={() => deleteTodo(todo.id)}
+      ></i>
+    </$.TodoItem>
+  );
 }
