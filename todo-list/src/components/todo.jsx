@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as $ from "../styles/styling";
 
 export default function Todo({
@@ -9,16 +9,6 @@ export default function Todo({
   deleteTodo,
   tabIndex,
 }) {
-  const [hovered, setHovered] = useState(-1);
-
-  const showTrashIcon = (id) => {
-    setHovered(id);
-  };
-
-  const hideTrashIcon = () => {
-    setHovered(-1);
-  };
-
   return (
     <$.TodoItem
       ref={provided.innerRef}
@@ -29,8 +19,6 @@ export default function Todo({
       done={todo.done}
       key={todo.id}
       isDragging={snapshot.isDragging}
-      onMouseEnter={() => showTrashIcon(todo.id)}
-      onMouseLeave={hideTrashIcon}
     >
       <i
         className={
@@ -42,7 +30,7 @@ export default function Todo({
       <span onClick={() => toggleDone(todo.id)}>{todo.content}</span>
       <i
         id={todo.id}
-        className={hovered === todo.id ? "fa-solid fa-trash-can" : "no-display"}
+        className={"fa-solid fa-trash-can"}
         onClick={() => deleteTodo(todo.id)}
         alt="delete-icon"
       ></i>

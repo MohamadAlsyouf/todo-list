@@ -1,14 +1,15 @@
 import React from "react";
+import * as $ from "../styles/styling";
 
 export default function FilterButton(props) {
   return (
-    <button
+    <$.FilterButton
       type="button"
       className="filter-button"
       aria-pressed={props.isPressed}
       onClick={() => props.setFilter(props.name)}
     >
       <span>{props.name}</span>
-    </button>
+    </$.FilterButton>
   );
 }

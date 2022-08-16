@@ -69,6 +69,12 @@ export default function App() {
     setTodos(dragTodos);
   };
 
+  let isEmpty;
+  if (todos.length === 0) {
+    isEmpty = <span>Add a todo to start doing!</span>;
+  } else {
+    isEmpty = <span style={{ display: "none" }}></span>;
+  }
   return (
     <>
       <$.AppWrapper>
@@ -87,7 +93,10 @@ export default function App() {
           <$.FilterDiv>
             <span>{todoCount} tasks left</span>
             <div>{filterList}</div>
-            <span className="clear-completed" onClick={() => clearCompleted()}>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() => clearCompleted()}
+            >
               clear completed
             </span>
           </$.FilterDiv>
@@ -98,6 +107,7 @@ export default function App() {
               <div {...provided.droppableProps} ref={provided.innerRef}>
                 <span style={{ display: "none" }}>{provided.placeholder}</span>
                 <$.TodoWrapper>
+                  {isEmpty}
                   {todos.filter(filterMap[filter]).map((todo, index) => (
                     <Draggable
                       key={todo.id}
@@ -112,7 +122,6 @@ export default function App() {
                           todo={todo}
                           toggleDone={toggleDone}
                           deleteTodo={deleteTodo}
-                          tabIndex="0"
                         />
                       )}
                     </Draggable>

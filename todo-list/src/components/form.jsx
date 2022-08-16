@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as $ from "../styles/styling";
 
 const useInputValue = (initialValue) => {
   const [value, setValue] = useState("");
@@ -21,10 +22,8 @@ export default function TodoForm({ onSubmit }) {
         resetValue();
       }}
     >
-      <input className="todo-input" {...todoText} />
-      <button className="add-button" type="submit">
-        Add
-      </button>
+      <$.TodoInput {...todoText} placeholder={"What's Todo?"} required />
+      <$.AddButton type="submit">Submit</$.AddButton>
     </form>
   );
 }
