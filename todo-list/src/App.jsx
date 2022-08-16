@@ -83,15 +83,15 @@ export default function App() {
             ]);
           }}
         />
-        <$.FooterWrapper>
-          <$.Footer>
+        <$.FilterWrapper>
+          <$.FilterDiv>
             <span>{todoCount} tasks left</span>
             <div>{filterList}</div>
             <span className="clear-completed" onClick={() => clearCompleted()}>
               clear completed
             </span>
-          </$.Footer>
-        </$.FooterWrapper>
+          </$.FilterDiv>
+        </$.FilterWrapper>
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="droppable">
             {(provided) => (
@@ -103,7 +103,7 @@ export default function App() {
                       key={todo.id}
                       draggableId={todo.id}
                       index={index}
-                      tab-index={index}
+                      tabIndex="0"
                     >
                       {(provided, snapshot) => (
                         <Todo
@@ -112,6 +112,7 @@ export default function App() {
                           todo={todo}
                           toggleDone={toggleDone}
                           deleteTodo={deleteTodo}
+                          tabIndex="0"
                         />
                       )}
                     </Draggable>

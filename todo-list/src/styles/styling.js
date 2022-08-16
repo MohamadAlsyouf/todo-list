@@ -18,12 +18,13 @@ export const TodoWrapper = styled.div`
   align-items: center;
 `;
 
-export const FooterWrapper = styled.div`
+export const FilterWrapper = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 2rem;
 `;
 
-export const Footer = styled.div`
+export const FilterDiv = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -44,11 +45,15 @@ export const TodoItem = styled.div`
   text-align: left;
   cursor: default;
   font-size: 1.25rem;
+  transform: none;
   > span {
     cursor: default;
   };
   &:hover {
     Background: lightblue;
+  };
+  &:focus {
+    border: 5px solid red;
   };
   ${({ done }) => done && `
     background: lightgreen;
@@ -59,5 +64,8 @@ export const TodoItem = styled.div`
     &:hover {
       background: #88dc88;
     };
+  `};
+  ${({ isDragging }) => isDragging && `
+    background: lightskyblue;
   `};
 `;
