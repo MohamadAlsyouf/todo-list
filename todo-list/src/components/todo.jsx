@@ -7,6 +7,7 @@ export default function Todo({
   snapshot,
   toggleDone,
   deleteTodo,
+  tabIndex,
 }) {
   const [hovered, setHovered] = useState(-1);
 
@@ -24,9 +25,10 @@ export default function Todo({
       snapshot={snapshot}
       {...provided.draggableProps}
       {...provided.dragHandleProps}
+      tabIndex="0"
       done={todo.done}
       key={todo.id}
-      tabIndex={todo.tabIndex}
+      isDragging={snapshot.isDragging}
       onMouseEnter={() => showTrashIcon(todo.id)}
       onMouseLeave={hideTrashIcon}
     >
@@ -35,12 +37,14 @@ export default function Todo({
           todo.done ? "fa-regular fa-circle-check" : "fa-regular fa-circle"
         }
         onClick={() => toggleDone(todo.id)}
+        alt="status-circle-icon"
       ></i>
       <span onClick={() => toggleDone(todo.id)}>{todo.content}</span>
       <i
         id={todo.id}
         className={hovered === todo.id ? "fa-solid fa-trash-can" : "no-display"}
         onClick={() => deleteTodo(todo.id)}
+        alt="delete-icon"
       ></i>
     </$.TodoItem>
   );
