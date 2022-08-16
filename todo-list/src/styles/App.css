@@ -3,47 +3,26 @@
 body {
   margin: 0%;
   padding: 0%;
+  background: linear-gradient(to bottom, #1d1239 0%, #693dd9 80%);
 }
 
-.todo-input {
-  width: 35rem;
-  height: 2rem;
-  font-size: 1.5rem;
+button {
+  cursor: pointer;
+  color: #100a21;
 }
 
 .fa-circle,
 .fa-circle-check {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin-right: 0.5rem;
-  cursor: default;
+  cursor: pointer;
 }
 
 .fa-trash-can {
   margin-left: auto;
-  cursor: default;
-}
-
-.no-display {
-  display: none;
-}
-
-.footer button {
-  padding: 0.5rem;
-  border: solid 1px black;
-}
-
-.filter-button {
   cursor: pointer;
 }
 
-.filter-button:hover {
-  background-color: darkgray;
-}
-
-.clear-completed {
-  cursor: pointer;
-}
-
-.add-button {
-
+.fa-trash-can:hover {
+  color: #1f1340;
 }
