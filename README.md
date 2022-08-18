@@ -25,9 +25,6 @@ A frontend todo list application developed using React
   - Users can drag and drop to reorder tasks
   - Users can navigate tasks via keyboard for improved accessibility
 
-- Features left to implement
-  - [x] Make it pretty!!!
-
 ## Preview
 ### Desktop 💻
 ![todo desktop](https://user-images.githubusercontent.com/93749120/184857396-e679751a-a2ef-4c7b-a36c-fdce5cd0a235.gif)
