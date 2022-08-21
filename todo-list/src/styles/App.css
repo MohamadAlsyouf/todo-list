@@ -4,6 +4,7 @@ body {
   margin: 0%;
   padding: 0%;
   background: linear-gradient(to bottom, #1d1239 0%, #693dd9 80%);
+  background-attachment: fixed;
 }
 
 button {

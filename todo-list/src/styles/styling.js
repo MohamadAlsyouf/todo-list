@@ -16,7 +16,7 @@ export const AppWrapper = styled.div`
   text-align: center;
   font-family: "Open Sans", sans-serif;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
 `;
 
 export const AppHeader = styled.header`
