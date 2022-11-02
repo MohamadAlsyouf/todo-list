@@ -1,5 +1,5 @@
 # todo-list
-A frontend todo list application developed using React
+A frontend todo list application/technical assessment developed using React
 
 ## Technologies Used 🛠️
 
